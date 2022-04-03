@@ -33,6 +33,9 @@
     exit
     }
 
+#Allow scripts to run on the system
+Set-ExeuctionPolicy Unrestricted
+
 Write-Host "[ Welcome to SuperNetfix! ]`n" -ForegroundColor Yellow
 Start-Sleep -m 500
 Write-Host "This script will perform the following operations.`n" -ForegroundColor Yellow
@@ -79,6 +82,7 @@ $startupPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\SNF
 Add-Content -Path $startupPath -Value "Test-NetConnection -Port 80 -InformationLevel 'Detailed'"
 Add-Content -Path $startupPath -Value "Write-Host '8. Finding all available networking devices...' -ForegroundColor Yellow -NoNewLine"
 Add-Content -Path $startupPath -Value "Get-NetAdapter -Name * | Format-List -Property Name, InterfaceDescription, HardwareInterface, LinkSpeed, Status, DriverInformation, DriverFileName"
+Add-Content -Path $startupPath -Value "Set-ExeuctionPolicy Default"
 Add-Content -Path $startupPath -Value "Write-Host 'Script completed successfully! See testing information above to see results.' -ForegroundColor Green; Write-Host; pause; Remove-Item -Path $startupPath"
 
 #6. THIS MUST BE PERFORMED AFTER 7/8 DUE TO RESTART CONFIGURATION
